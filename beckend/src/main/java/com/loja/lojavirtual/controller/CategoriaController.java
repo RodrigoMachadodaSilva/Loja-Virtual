@@ -25,7 +25,8 @@ import com.loja.lojavirtual.service.CategoriaService;
 @RestController
 @RequestMapping("/categoria")
 public class CategoriaController {
-
+	
+	@Autowired
 	private CategoriaRepository categoriaRepository;
 
 	@Autowired
