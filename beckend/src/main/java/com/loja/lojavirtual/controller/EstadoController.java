@@ -23,10 +23,9 @@ import com.loja.lojavirtual.repository.EstadoRepository;
 import com.loja.lojavirtual.service.EstadoService;
 
 @RestController
-@RequestMapping("/estados")
+@RequestMapping("/estado")
 public class EstadoController {
 
-	@Autowired
 	private EstadoRepository estadoRepository;
 
 	@Autowired
