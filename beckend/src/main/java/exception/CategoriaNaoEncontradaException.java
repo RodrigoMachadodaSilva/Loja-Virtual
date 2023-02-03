@@ -1,6 +1,6 @@
 package exception;
 
-public class CategoriaNaoEncontradaException extends RuntimeException{
+public class CategoriaNaoEncontradaException extends EntidadeNaoEncontradaException{
 	
 	private static final long serialVersionUID = 1L;
 

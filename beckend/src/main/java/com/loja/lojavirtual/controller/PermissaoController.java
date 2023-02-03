@@ -25,17 +25,17 @@ public class PermissaoController {
 	@Autowired
 	private PermissaoService permissaoService;
 
-	@GetMapping("/")
+	@GetMapping()
 	public List<Permissao> buscarTodos() {
 		return permissaoService.buscarTodos();
 	}
 
-	@PostMapping("/")
+	@PostMapping()
 	public Permissao inserir(@RequestBody Permissao permissao) {
 		return permissaoService.inserir(permissao);
 	}
 
-	@PutMapping("/")
+	@PutMapping()
 	public Permissao alterar(@RequestBody Permissao permissao) {
 		return permissaoService.alterar(permissao);
 	}

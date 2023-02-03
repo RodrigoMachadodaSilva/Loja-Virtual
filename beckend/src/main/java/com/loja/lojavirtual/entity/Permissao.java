@@ -23,9 +23,9 @@ public class Permissao {
 
 	private String nome;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataCriacao;
+	//@Temporal(TemporalType.TIMESTAMP)
+	//private Date dataCriacao;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataAtualizacao;
+	//@Temporal(TemporalType.TIMESTAMP)
+	//private Date dataAtualizacao ;
 }
