@@ -3,7 +3,6 @@ package com.loja.lojavirtual.dto.input;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
-import com.loja.lojavirtual.entity.Cidade;
 import com.loja.lojavirtual.entity.Endereco;
 
 import lombok.Data;

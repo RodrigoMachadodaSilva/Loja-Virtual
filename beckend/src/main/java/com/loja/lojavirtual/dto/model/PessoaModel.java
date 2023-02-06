@@ -1,6 +1,5 @@
 package com.loja.lojavirtual.dto.model;
 
-import com.loja.lojavirtual.entity.Cidade;
 import com.loja.lojavirtual.entity.Endereco;
 
 import lombok.Data;
