@@ -19,15 +19,12 @@ import com.loja.lojavirtual.assembler.CategoriaModelAssembler;
 import com.loja.lojavirtual.dto.input.CategoriaInput;
 import com.loja.lojavirtual.dto.model.CategoriaModel;
 import com.loja.lojavirtual.entity.Categoria;
-import com.loja.lojavirtual.repository.CategoriaRepository;
 import com.loja.lojavirtual.service.CategoriaService;
 
 @RestController
 @RequestMapping("/categoria")
 public class CategoriaController {
 	
-	@Autowired
-	private CategoriaRepository categoriaRepository;
 
 	@Autowired
 	private CategoriaService categoriaService;

@@ -38,10 +38,7 @@ public class Pessoa {
 	@Embedded
 	private Endereco endereco;
 	
-    @ManyToOne
-    @JoinColumn(name="cidade_id")
-	private Cidade cidade;
-	
+
 	//@ManyToMany
 	//private List<Permissao> permissao;
 	

@@ -11,9 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.loja.lojavirtual.entity.Produto;
 import com.loja.lojavirtual.repository.ProdutoRepository;
 
-import exception.CidadeNaoEncontradaException;
 import exception.EntidadeEmUsoException;
-import exception.MarcaNaoEncontradaException;
 import exception.ProdutoNaoEncontradoException;
 
 @Service
@@ -31,7 +29,7 @@ public class ProdutoService {
 	
 	public Produto buscar(Long produtoId) {
 		return produtoRepository.findById(produtoId)
-				.orElseThrow(() -> new MarcaNaoEncontradaException(produtoId));
+				.orElseThrow(() -> new ProdutoNaoEncontradoException(produtoId));
 	}
 	
 	public Produto salvar(Produto produto) {
