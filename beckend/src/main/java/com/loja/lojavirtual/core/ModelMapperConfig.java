@@ -1,4 +1,4 @@
-package com.loja.lojavirtual.core.modelmapper;
+package com.loja.lojavirtual.core;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

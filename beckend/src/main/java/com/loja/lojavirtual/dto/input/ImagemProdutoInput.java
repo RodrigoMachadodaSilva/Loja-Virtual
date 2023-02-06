@@ -1,0 +1,28 @@
+package com.loja.lojavirtual.dto.input;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.http.MediaType;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.loja.lojavirtual.core.FileContentType;
+import com.loja.lojavirtual.core.FileSize;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class ImagemProdutoInput {
+
+	@NotNull
+	@FileSize(max = "500KB")
+	@FileContentType(allowed = { MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE })
+	private MultipartFile arquivo;
+	
+	@NotBlank
+	private String descricao;
+	
+}
+
