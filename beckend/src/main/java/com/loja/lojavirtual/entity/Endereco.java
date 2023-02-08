@@ -14,27 +14,27 @@ import lombok.Data;
 @Embeddable
 public class Endereco {
 	
-	@NotBlank
+	//@NotBlank
 	@Column(name = "endereco_cep")
 	private String cep;
 	
-	@NotBlank
+	//@NotBlank
 	@Column(name = "endereco_logradouro")
 	private String logradouro;
 	
-	@NotBlank
+	//@NotBlank
 	@Column(name = "endereco_numero")
 	private String numero;
 
-	@NotBlank
+	//@NotBlank
 	@Column(name = "endereco_complemento")
 	private String complemento;
 
-	@NotBlank
+	//@NotBlank
 	@Column(name = "endereco_bairro")
 	private String bairro;
 
-	@Valid
+	//@Valid
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "endereco_cidade_id")
 	private Cidade cidade;

@@ -1,6 +1,6 @@
 package com.loja.lojavirtual.dto.model;
 
-import java.util.List;
+import java.util.Set;
 
 import com.loja.lojavirtual.entity.Endereco;
 import com.loja.lojavirtual.entity.Permissao;
@@ -8,12 +8,10 @@ import com.loja.lojavirtual.entity.Permissao;
 import lombok.Data;
 
 @Data
-public class PessoaModel {
+public class PessoaClienteModel {
 	
 
 	private Long id;
-	
-	private List<Permissao> permissoes;
 	
 	private String nome;
 	
@@ -23,7 +21,7 @@ public class PessoaModel {
 	
 	private Endereco endereco;
 	
-
+	private Set<Permissao> permissoes;
 	
 
 }

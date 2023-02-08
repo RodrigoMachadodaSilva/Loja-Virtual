@@ -31,3 +31,6 @@ insert into permissao(id, nome) values (1, 'administrador');
 insert into permissao(id, nome) values (2, 'cliente');
 
 insert into pessoa( id, nome, cpf, email, endereco_cidade_id, endereco_cep, endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro) values( 2, 'rodrigo Machado', '1234567891', 'rodrigoprojeto', 1, '655434577', 'rua aratiba', '1234', 'apartamento 1', 'centro');
+
+insert into pessoa_permissao(pessoa_id, permissoes_id) values (2, 1);
+insert into pessoa_permissao(pessoa_id, permissoes_id) values (2, 2)

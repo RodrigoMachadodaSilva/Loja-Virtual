@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.loja.lojavirtual.assembler.PessoaInputDisassembler;
 import com.loja.lojavirtual.assembler.PessoaModelAssembler;
+import com.loja.lojavirtual.dto.input.PessoaClienteInput;
 import com.loja.lojavirtual.dto.input.PessoaInput;
 import com.loja.lojavirtual.dto.model.PessoaModel;
 import com.loja.lojavirtual.entity.Pessoa;
