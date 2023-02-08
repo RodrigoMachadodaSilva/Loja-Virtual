@@ -1,20 +1,20 @@
 package com.loja.lojavirtual.entity;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 
 @Entity
 @Data
@@ -25,10 +25,9 @@ public class Pessoa {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@OneToMany(mappedBy = "pessoa", orphanRemoval = true, cascade = { CascadeType.PERSIST,
-			CascadeType.MERGE }, fetch = FetchType.EAGER)
-	@Setter(value = AccessLevel.NONE)
-	private List<PermissaoPessoa> permissoes;
+	@ManyToMany
+	@JoinTable(name = "pessoa_permissao")
+	private Set<Permissao> permissoes;
 
 	private String nome;
 
@@ -39,12 +38,7 @@ public class Pessoa {
 	@Embedded
 	private Endereco endereco;
 
-	public void setPermissaoPessoas(List<PermissaoPessoa> pp) {
-		for (PermissaoPessoa p : pp) {
-			p.setPessoa(this);
-		}
-		this.permissoes = pp;
-	}
+
 
 	// @Temporal(TemporalType.TIMESTAMP)
 	// private Date dataCriacao;

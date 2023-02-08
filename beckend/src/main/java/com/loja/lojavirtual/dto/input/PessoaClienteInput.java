@@ -1,9 +1,12 @@
 package com.loja.lojavirtual.dto.input;
 
+import java.util.Set;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
 import com.loja.lojavirtual.entity.Endereco;
+import com.loja.lojavirtual.entity.Permissao;
 
 import lombok.Data;
 
@@ -22,6 +25,8 @@ public class PessoaClienteInput {
 	@NotBlank
 	@Valid
 	private Endereco endereco;
+	
+	private Set<Permissao> permissoes;
 	
 
 

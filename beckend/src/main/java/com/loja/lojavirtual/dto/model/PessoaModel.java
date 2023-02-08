@@ -3,7 +3,7 @@ package com.loja.lojavirtual.dto.model;
 import java.util.List;
 
 import com.loja.lojavirtual.entity.Endereco;
-import com.loja.lojavirtual.entity.PermissaoPessoa;
+import com.loja.lojavirtual.entity.Permissao;
 
 import lombok.Data;
 
@@ -13,7 +13,7 @@ public class PessoaModel {
 
 	private Long id;
 	
-	private List<PermissaoPessoa> permissoes;
+	private List<Permissao> permissoes;
 	
 	private String nome;
 	
