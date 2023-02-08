@@ -22,11 +22,11 @@ public class Cidade {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotBlank
+	//@NotBlank
 	private String nome;
 	
-	@Valid
-	@NotNull
+	//@Valid
+	//@NotNull
 	@ManyToOne
 	@JoinColumn(name = "estado_id")
 	private Estado estado;

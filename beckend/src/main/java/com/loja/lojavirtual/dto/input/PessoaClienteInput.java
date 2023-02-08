@@ -1,30 +1,27 @@
 package com.loja.lojavirtual.dto.input;
 
-import java.util.List;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 import com.loja.lojavirtual.entity.Endereco;
-import com.loja.lojavirtual.entity.PermissaoPessoa;
 
 import lombok.Data;
 
 @Data
-public class PessoaInput {
+public class PessoaClienteInput {
 	
-	
+	@NotBlank
 	private String nome;
 	
-	private List<PermissaoPessoa> permissoes;
-	
-
+	@NotBlank
 	private String cpf;
 	
-
+	@NotBlank
 	private String email;
 	
-	
+	@NotBlank
+	@Valid
 	private Endereco endereco;
-	
-
 	
 
 
