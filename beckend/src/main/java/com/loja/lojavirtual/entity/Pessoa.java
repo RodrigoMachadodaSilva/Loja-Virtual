@@ -1,8 +1,6 @@
 package com.loja.lojavirtual.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Embedded;
@@ -13,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Data;
 
@@ -35,10 +35,15 @@ public class Pessoa {
 
 	private String email;
 
+	private String senha;
+
+	private String codigoRecuperacaoSenha;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataEnvioCodigo;
+
 	@Embedded
 	private Endereco endereco;
-
-
 
 	// @Temporal(TemporalType.TIMESTAMP)
 	// private Date dataCriacao;
