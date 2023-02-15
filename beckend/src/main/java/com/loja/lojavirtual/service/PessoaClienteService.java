@@ -39,12 +39,10 @@ public class PessoaClienteService {
 	@Transactional
 	public Pessoa salvar(Pessoa pessoa) {
 		vincularPessoaPermissao(pessoa);
-		//emailService.enviarEmailTexto(pessoa.getEmail(), "Cadastro na Loja ",
-				//"O registro na loja foi realizado com sucesso");
         Map<String, Object> proprMap = new HashMap<>();
         proprMap.put("nome", pessoa.getNome());
         proprMap.put("mensagem", "O registro na loja foi realizado com sucesso. Em breve você receberá a senha de acesso por e-mail!!");
-        emailService.enviarEmailTemplate(pessoa.getEmail(), "Cadastro na Loja Tabajara", proprMap);
+        emailService.enviarEmailTemplate(pessoa.getEmail(), "Cadastro na Loja", proprMap);
         return pessoa;
 
 	}
