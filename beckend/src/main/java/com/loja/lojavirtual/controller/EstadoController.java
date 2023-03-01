@@ -25,7 +25,8 @@ import com.loja.lojavirtual.service.EstadoService;
 @RestController
 @RequestMapping("/estado")
 public class EstadoController {
-
+	
+	@Autowired
 	private EstadoRepository estadoRepository;
 
 	@Autowired
@@ -66,8 +67,11 @@ public class EstadoController {
 		Estado estadoAtual = estadoService.buscarOuFalhar(estadoId);
 
 		estadoInputDisassembler.copyToDomainObject(estadoInput, estadoAtual);
+		
+		estadoService.validarEstadoDuplicado(estadoAtual);
 
 		estadoAtual = estadoService.salvar(estadoAtual);
+		
 
 		return estadoModelAssembler.toModel(estadoAtual);
 	}

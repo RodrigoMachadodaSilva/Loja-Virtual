@@ -10,6 +10,7 @@ import com.loja.lojavirtual.entity.Estado;
 import com.loja.lojavirtual.repository.EstadoRepository;
 
 import exception.EstadoNaoEncontradoException;
+import exception.NegocioException;
 
 @Service
 public class EstadoService {
@@ -21,6 +22,7 @@ public class EstadoService {
 
 	@Transactional
 	public Estado salvar(Estado estado) {
+		validarEstadoDuplicado(estado);
 		return estadoRepository.save(estado);
 	}
 
@@ -37,9 +39,19 @@ public class EstadoService {
 			throw new exception.EntidadeEmUsoException(String.format(MSG_ESTADO_EM_USO, estadoId));
 		}
 	}
+	
+	
+
 
 	public Estado buscarOuFalhar(Long estadoId) {
 		return estadoRepository.findById(estadoId).orElseThrow(() -> new EstadoNaoEncontradoException(estadoId));
+	}
+	
+	public void validarEstadoDuplicado( Estado estado) {
+		Estado estadoExistente = estadoRepository.findByNome(estado.getNome());
+		if(estadoExistente != null && estadoExistente.getId() != estado.getId()) {
+			throw new NegocioException(String.format("O estado de nome %s já está cadastrado", estado.getNome()));
+		}
 	}
 
 }
