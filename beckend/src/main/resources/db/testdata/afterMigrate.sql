@@ -8,6 +8,7 @@ delete from produto;
 delete from permissao;
 delete from pessoa;
 delete from compra;
+delete from item_compra;
 
 insert into estado (id, nome, sigla) values (1, 'Minas Gerais', 'MG');
 insert into estado (id, nome, sigla) values (2, 'São Paulo', 'SP');
