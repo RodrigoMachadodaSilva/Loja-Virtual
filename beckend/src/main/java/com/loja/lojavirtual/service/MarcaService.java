@@ -13,6 +13,7 @@ import com.loja.lojavirtual.repository.MarcaRepository;
 
 import exception.EntidadeEmUsoException;
 import exception.MarcaNaoEncontradaException;
+import exception.NegocioException;
 
 @Service
 public class MarcaService {
@@ -33,8 +34,10 @@ public class MarcaService {
 	}
 
 	public Marca salvar(Marca marca) {
+		validarMarcaDuplicada(marca);
 		return marcaRepository.save(marca);
 	}
+
 
 	@Transactional
 	public void excluir(Long marcaId) {
@@ -50,5 +53,15 @@ public class MarcaService {
 					String.format(MSG_MARCA_EM_USO, marcaId));
 		}
 	}
+	
+	private void validarMarcaDuplicada(Marca marca) {
+		Marca marcaExistente = marcaRepository.findByNome(marca.getNome());
+		if(marcaExistente != null && marcaExistente.getId() != marca.getId() ) {
+			throw new NegocioException(String.format("Já existe marca de nome %s salva no cadastro",
+					marca.getNome().toUpperCase()));
+		}
+		
+	}
+
 
 }
