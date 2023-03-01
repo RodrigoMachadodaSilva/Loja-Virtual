@@ -7,6 +7,7 @@ delete from cidade;
 delete from produto;
 delete from permissao;
 delete from pessoa;
+delete from compra;
 
 insert into estado (id, nome, sigla) values (1, 'Minas Gerais', 'MG');
 insert into estado (id, nome, sigla) values (2, 'São Paulo', 'SP');
@@ -32,5 +33,13 @@ insert into permissao(id, nome) values (2, 'cliente');
 
 insert into pessoa( id, nome, cpf, email, endereco_cidade_id, endereco_cep, endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro) values( 2, 'rodrigo Machado', '1234567891', 'rodrigoprojeto', 1, '655434577', 'rua aratiba', '1234', 'apartamento 1', 'centro');
 
-insert into pessoa_permissao(pessoa_id, permissoes_id) values (2, 1);
-insert into pessoa_permissao(pessoa_id, permissoes_id) values (2, 2)
+#insert into pessoa_permissao(pessoa_id, permissoes_id) values (2, 1);
+#insert into pessoa_permissao(pessoa_id, permissoes_id) values (2, 2);
+
+insert into compra (id, codigo, usuario_cliente_id, endereco_cidade_id, endereco_cep, 
+                    endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro,
+	                 data_criacao, subtotal, taxa_frete, valor_total)
+values (1, 'f9981ca4-5a5e-4da3-af04-933861df3e55', 2,  1, '38400-000', 'Rua Floriano Peixoto', '500', 'Apto 801', 'Brasil', utc_timestamp, 298.90, 10, 308.90);
+
+insert into item_compra (id, compra_id, produto_id, quantidade, preco_unitario, preco_total, observacao)
+values (54, 1, 3, 2, 87.2, 174.4, null);

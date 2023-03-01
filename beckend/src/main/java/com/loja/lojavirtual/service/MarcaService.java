@@ -3,6 +3,7 @@ package com.loja.lojavirtual.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,10 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.loja.lojavirtual.entity.Marca;
 import com.loja.lojavirtual.repository.MarcaRepository;
 
+import exception.EntidadeEmUsoException;
 import exception.MarcaNaoEncontradaException;
 
 @Service
 public class MarcaService {
+	
+	private static final String MSG_MARCA_EM_USO = "Marca de código %d não pode ser removido, pois está em uso";
+	
 	
 	@Autowired
 	private MarcaRepository marcaRepository;
@@ -40,6 +45,9 @@ public class MarcaService {
 		} catch (EmptyResultDataAccessException e) {
 			throw new MarcaNaoEncontradaException(marcaId);
 
+		}catch (DataIntegrityViolationException e) {
+			throw new EntidadeEmUsoException(
+					String.format(MSG_MARCA_EM_USO, marcaId));
 		}
 	}
 
