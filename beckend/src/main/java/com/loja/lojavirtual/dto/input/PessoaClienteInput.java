@@ -26,7 +26,7 @@ public class PessoaClienteInput {
 	@Valid
 	private Endereco endereco;
 	
-	private Set<Permissao> permissoes;
+	//private Set<Permissao> permissoes;
 	
 
 

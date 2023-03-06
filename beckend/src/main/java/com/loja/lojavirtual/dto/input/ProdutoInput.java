@@ -20,6 +20,6 @@ public class ProdutoInput {
 
 	private Marca marca;
 
-	private Categoria categoria;
+	//private Categoria categoria;
 
 }

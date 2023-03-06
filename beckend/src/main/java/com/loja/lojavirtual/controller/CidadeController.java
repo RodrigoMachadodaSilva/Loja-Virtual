@@ -20,6 +20,7 @@ import com.loja.lojavirtual.assembler.CidadeModelAssembler;
 import com.loja.lojavirtual.dto.input.CidadeInput;
 import com.loja.lojavirtual.dto.model.CidadeModel;
 import com.loja.lojavirtual.entity.Cidade;
+import com.loja.lojavirtual.repository.CidadeRepository;
 import com.loja.lojavirtual.service.CidadeService;
 
 import exception.EstadoNaoEncontradoException;
@@ -38,9 +39,13 @@ public class CidadeController {
 	@Autowired
 	private CidadeModelAssembler cidadeModelAssembler;
 	
+	@Autowired
+	private CidadeRepository cidadeRepository;
+	
+	//@Override
 	@GetMapping
 	public List<CidadeModel> listar() {
-		List<Cidade> todasCidades = cidadeService.listar();
+		List<Cidade> todasCidades = cidadeRepository.findAll();
 		
 		return cidadeModelAssembler.toCollectionModel(todasCidades);
 	}

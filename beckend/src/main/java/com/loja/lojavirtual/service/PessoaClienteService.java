@@ -55,7 +55,7 @@ public class PessoaClienteService {
 	public void vincularPessoaPermissao(Pessoa pessoa) {
 		Set<Permissao> listaPermissao = permissaoRepository.findByNome("cliente");
 		if (listaPermissao.size() > 0) {
-			pessoa.setPermissoes(listaPermissao);
+			//pessoa.setPermissoes(listaPermissao);
 		}
 	}
 

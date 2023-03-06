@@ -21,7 +21,7 @@ public class PessoaClienteModel {
 	
 	private Endereco endereco;
 	
-	private Set<Permissao> permissoes;
+	//private Set<Permissao> permissoes;
 	
 
 }

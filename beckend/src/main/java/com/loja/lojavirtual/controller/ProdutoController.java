@@ -22,7 +22,7 @@ import com.loja.lojavirtual.entity.Produto;
 import com.loja.lojavirtual.service.ProdutoService;
 
 @RestController
-@RequestMapping("/produto")
+@RequestMapping("categoria{categoriaId}/produto")
 public class ProdutoController {
 
 	@Autowired
@@ -35,47 +35,48 @@ public class ProdutoController {
 	public ProdutoInputDisassembler produtoInputDisassembler;
 
 	@GetMapping
-	public List<ProdutoModel> listar() {
+	public List<ProdutoModel> listar(@PathVariable Long categoriaId) {
 
-		List<Produto> produtos = produtoService.listar();
+		List<Produto> produtos = produtoService.listar(categoriaId);
 
 		return produtoModelAssembler.toCollectionModel(produtos);
 	}
 
 	@GetMapping("/{produtoId}")
-	public ProdutoModel buscarPorId(@PathVariable Long produtoId) {
+	public ProdutoModel buscarPorId(@PathVariable Long produtoId, @PathVariable Long categoriaId) {
 
-		Produto produto = produtoService.buscar(produtoId);
+		Produto produto = produtoService.buscar(produtoId, categoriaId);
 
 		return produtoModelAssembler.toModel(produto);
 	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public ProdutoModel salvar(@RequestBody ProdutoInput produtoInput) {
+	public ProdutoModel salvar(@PathVariable Long categoriaId, @RequestBody ProdutoInput produtoInput) {
 		Produto produto = produtoInputDisassembler.toDomainObject(produtoInput);
 
-		Produto produtosalvar = produtoService.salvar(produto);
+		Produto produtosalvar = produtoService.salvar(categoriaId, produto);
 
 		return produtoModelAssembler.toModel(produtosalvar);
 	}
-	
+
 	@DeleteMapping("/{produtoId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void excluir(@PathVariable Long produtoId) {
-		produtoService.excluir(produtoId);
+	public void excluir( @PathVariable Long categoriaId, @PathVariable Long produtoId) {
+		produtoService.excluir(categoriaId, produtoId);
 	}
-	
+
 	@PutMapping("/{produtoId}")
-	public ProdutoModel atualizar(@PathVariable Long produtoId, @RequestBody ProdutoInput produtoInput) {
-		 Produto produtoAtual = produtoService.buscar(produtoId);
-		 
-		 produtoInputDisassembler.copyToDomainObject(produtoInput, produtoAtual);
-		 
-		 produtoAtual = produtoService.salvar(produtoAtual);
-		 
-		 return produtoModelAssembler.toModel(produtoAtual);
-		 
+	public ProdutoModel atualizar(@PathVariable Long produtoId, @PathVariable Long categoriaId,
+			@RequestBody ProdutoInput produtoInput) {
+		Produto produtoAtual = produtoService.buscar(produtoId, categoriaId);
+
+		produtoInputDisassembler.copyToDomainObject(produtoInput, produtoAtual);
+
+		produtoAtual = produtoService.salvar(categoriaId, produtoAtual);
+
+		return produtoModelAssembler.toModel(produtoAtual);
+
 	}
 
 }

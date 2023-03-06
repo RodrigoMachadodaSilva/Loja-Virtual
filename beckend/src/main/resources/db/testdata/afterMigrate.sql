@@ -15,6 +15,9 @@ insert into estado (id, nome, sigla) values (2, 'São Paulo', 'SP');
 insert into estado (id, nome, sigla) values (3, 'Paraná', 'PR');
 
 insert into cidade(id, nome, estado_id) values (1, 'Uberlandia', 1);
+insert into cidade(id, nome, estado_id) values (2, 'Assis', 2);
+insert into cidade(id, nome, estado_id) values (3, 'Curitiba', 3);
+insert into cidade(id, nome, estado_id) values (4, 'Campinas', 2);
 
 insert into categoria(id, nome) values (1, 'facas');
 insert into categoria(id, nome) values (2, 'acessorios');
@@ -40,7 +43,7 @@ insert into pessoa( id, nome, cpf, email, endereco_cidade_id, endereco_cep, ende
 insert into compra (id, codigo, usuario_cliente_id, endereco_cidade_id, endereco_cep, 
                     endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro,
 	                 data_criacao, subtotal, taxa_frete, valor_total)
-values (1, 'f9981ca4-5a5e-4da3-af04-933861df3e55', 2,  1, '38400-000', 'Rua Floriano Peixoto', '500', 'Apto 801', 'Brasil', utc_timestamp, 298.90, 10, 308.90);
+values (1, 'f9981ca4-5a5e-4da3-af04-933861df3e55', 1,  1, '38400-000', 'Rua Floriano Peixoto', '500', 'Apto 801', 'Brasil', utc_timestamp, 298.90, 10, 308.90);
 
 insert into item_compra (id, compra_id, produto_id, quantidade, preco_unitario, preco_total, observacao)
 values (54, 1, 3, 2, 87.2, 174.4, null);

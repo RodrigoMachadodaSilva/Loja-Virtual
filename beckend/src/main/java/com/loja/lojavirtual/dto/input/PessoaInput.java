@@ -13,7 +13,7 @@ public class PessoaInput {
 	
 	private String nome;
 	
-	private List<Permissao> permissoes;
+	//private List<Permissao> permissoes;
 	
 
 	private String cpf;

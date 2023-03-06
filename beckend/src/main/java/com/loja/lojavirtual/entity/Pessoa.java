@@ -25,9 +25,9 @@ public class Pessoa {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@ManyToMany
-	@JoinTable(name = "pessoa_permissao")
-	private Set<Permissao> permissoes;
+	//@ManyToMany
+	//@JoinTable(name = "pessoa_permissao")
+	//private Set<Permissao> permissoes;
 
 	private String nome;
 

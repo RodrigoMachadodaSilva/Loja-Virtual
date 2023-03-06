@@ -13,7 +13,7 @@ public class PessoaModel {
 
 	private Long id;
 	
-	private List<Permissao> permissoes;
+	
 	
 	private String nome;
 	
@@ -22,6 +22,8 @@ public class PessoaModel {
 	private String email;
 	
 	private Endereco endereco;
+	
+	//private List<Permissao> permissoes;
 	
 
 	
