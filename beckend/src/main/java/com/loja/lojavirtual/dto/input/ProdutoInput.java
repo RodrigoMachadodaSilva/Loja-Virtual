@@ -18,8 +18,8 @@ public class ProdutoInput {
 
 	private BigDecimal valor_Venda;
 
-	private Marca marca;
+	private MarcaInput marcaInput;
 
-	//private Categoria categoria;
+	private CategoriaInput categoriaInput;
 
 }

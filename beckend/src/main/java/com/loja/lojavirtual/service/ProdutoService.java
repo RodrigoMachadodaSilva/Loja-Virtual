@@ -34,20 +34,22 @@ public class ProdutoService {
 	}
 
 	public Produto buscar(Long produtoId, Long categoriaId) {
-		return produtoRepository.buscarPorId(produtoId, categoriaId)
+		Produto produto = produtoRepository.buscarPorId(produtoId, categoriaId)
 				.orElseThrow(() -> new ProdutoNaoEncontradoException(produtoId));
+
+		return produto;
 	}
 
-	public Produto salvar( Long categoriaId, Produto produto) {
+	public Produto salvar(Long categoriaId, Produto produto) {
 		validarCategoriaProdutoExiste(categoriaId);
-		Categoria categoria =categoriaService.buscarOuFalhar(categoriaId);
+		Categoria categoria = categoriaService.buscarOuFalhar(categoriaId);
 		validarProdutoDuplicado(produto);
 		produto.setCategoria(categoria);
 		return produtoRepository.save(produto);
 	}
 
 	@Transactional
-	public void excluir(Long categoriaId,Long produtoId) {
+	public void excluir(Long categoriaId, Long produtoId) {
 		try {
 			produtoRepository.deleteById(produtoId);
 			produtoRepository.flush();
@@ -66,13 +68,26 @@ public class ProdutoService {
 		}
 
 	}
-	
+
 	private void validarProdutoDuplicado(Produto produto) {
-		Optional<Produto> produtoExiste = produtoRepository.findByCategoriaIdAndNomeAndDescricao(produto.getCategoria().getId()
-				,produto.getNome(), produto.getDescricao());
-		if(produtoExiste.isPresent()) {
-			throw new NegocioException(String.format("O produto de nome %s já está salvo em nosso sistema", produto.getNome()));
+		Optional<Produto> produtoExiste = produtoRepository.findByCategoriaIdAndNomeAndDescricao(
+				produto.getCategoria().getId(), produto.getNome(), produto.getDescricao());
+		if (produtoExiste.isPresent()) {
+			throw new NegocioException(
+					String.format("O produto de nome %s já está salvo em nosso sistema", produto.getNome()));
 		}
+	}
+
+	protected Produto validarProdutoCompraExiste(Long produtoId) {
+		Optional<Produto> produtoExiste = produtoRepository.findById(produtoId);
+		if (produtoExiste.isEmpty()) {
+			throw new ProdutoNaoEncontradoException(produtoId);
+		}
+		return produtoExiste.get();
+	}
+
+	public Produto buscarPorId(Long produtoId) {
+		return produtoRepository.findById(produtoId).orElseThrow(() -> new ProdutoNaoEncontradoException(produtoId));
 	}
 
 }

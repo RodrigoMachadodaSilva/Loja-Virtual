@@ -49,6 +49,8 @@ public class ProdutoController {
 
 		return produtoModelAssembler.toModel(produto);
 	}
+	
+	
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)

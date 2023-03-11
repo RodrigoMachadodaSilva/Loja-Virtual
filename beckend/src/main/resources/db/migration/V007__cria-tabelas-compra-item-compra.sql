@@ -1,26 +1,26 @@
 create table compra (
   id bigint not null auto_increment,
-  codigo varchar (255) not null,
-  subtotal decimal(10,2) not null,
-  taxa_frete decimal(10,2) not null,
-  valor_total decimal(10,2) not null,
+  codigo varchar (255) ,
+  subtotal decimal(10,2),
+  taxa_frete decimal(10,2),
+  valor_total decimal(10,2),
 
-  #restaurante_id bigint not null,
-  usuario_cliente_id bigint not null,
-  #forma_pagamento_id bigint not null,
+  #restaurante_id bigint ,
+  usuario_cliente_id bigint ,
+  #forma_pagamento_id bigintl,
   
-  endereco_cidade_id bigint(20) not null,
-  endereco_cep varchar(9) not null,
-  endereco_logradouro varchar(100) not null,
-  endereco_numero varchar(20) not null,
-  endereco_complemento varchar(60) null,
-  endereco_bairro varchar(60) not null,
+  endereco_cidade_id bigint(20),
+  endereco_cep varchar(9),
+  endereco_logradouro varchar(100),
+  endereco_numero varchar(20),
+  endereco_complemento varchar(60),
+  endereco_bairro varchar(60),
   
-  #status varchar(10) not null,
-  data_criacao datetime not null,
-  #data_confirmacao datetime null,
-  #data_cancelamento datetime null,
-  #data_entrega datetime null,
+  #status varchar(10),
+  data_criacao datetime,
+  #data_confirmacao datetime,
+  #data_cancelamento datetime,
+  #data_entrega datetime,
 
   primary key (id)
 
@@ -31,12 +31,12 @@ create table compra (
 
 create table item_compra (
   id bigint not null auto_increment,
-  quantidade smallint(6) not null,
-  preco_unitario decimal(10,2) not null,
-  preco_total decimal(10,2) not null,
-  observacao varchar(255) null,
-  compra_id bigint not null,
-  produto_id bigint not null,
+  quantidade smallint(6) ,
+  preco_unitario decimal(10,2) ,
+  preco_total decimal(10,2) ,
+  observacao varchar(255) ,
+  compra_id bigint ,
+  produto_id bigint ,
   
   primary key (id)
   #unique key uk_item_compra_produto (compra_id, produto_id),

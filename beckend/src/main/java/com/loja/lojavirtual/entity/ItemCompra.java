@@ -1,6 +1,7 @@
 package com.loja.lojavirtual.entity;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,8 +33,7 @@ public class ItemCompra {
 	
 	private Integer quantidade;
 	
-	private String observacao;
-
+    @JsonIgnore
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Compra compra;

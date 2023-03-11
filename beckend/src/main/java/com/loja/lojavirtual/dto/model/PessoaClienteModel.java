@@ -15,12 +15,6 @@ public class PessoaClienteModel {
 	
 	private String nome;
 	
-	private String cpf;
-	
-	private String email;
-	
-	private Endereco endereco;
-	
 	//private Set<Permissao> permissoes;
 	
 

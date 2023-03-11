@@ -1,12 +1,6 @@
 package com.loja.lojavirtual.dto.input;
 
-import java.util.Set;
-
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
-
-import com.loja.lojavirtual.entity.Endereco;
-import com.loja.lojavirtual.entity.Permissao;
 
 import lombok.Data;
 
@@ -14,17 +8,17 @@ import lombok.Data;
 public class PessoaClienteInput {
 	
 	@NotBlank
-	private String nome;
+	private Long id;
 	
-	@NotBlank
-	private String cpf;
+	//@NotBlank
+	//private String cpf;
 	
-	@NotBlank
-	private String email;
+	//@NotBlank
+	//private String email;
 	
-	@NotBlank
-	@Valid
-	private Endereco endereco;
+	//@NotBlank
+	//@Valid
+	//private Endereco endereco;
 	
 	//private Set<Permissao> permissoes;
 	

@@ -29,41 +29,34 @@ public class Compra {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	private String codigo;
-	
+
+	// private String codigo;
+
 	private BigDecimal subtotal;
-	
+
 	private BigDecimal taxaFrete;
-	
+
 	private BigDecimal valorTotal;
 
 	@Embedded
 	private Endereco enderecoEntrega;
-	
-	
+
 	@CreationTimestamp
 	private OffsetDateTime dataCriacao;
 
 	@ManyToOne
 	@JoinColumn(name = "usuario_cliente_id", nullable = false)
 	private Pessoa cliente;
-	
+
 	@OneToMany(mappedBy = "compra", cascade = CascadeType.ALL)
 	private List<ItemCompra> itens = new ArrayList<>();
 
 	public void calcularValorTotal() {
 		getItens().forEach(ItemCompra::calcularPrecoTotal);
-		
-		this.subtotal = getItens().stream()
-			.map(item -> item.getPrecoTotal())
-			.reduce(BigDecimal.ZERO, BigDecimal::add);
-		
+
+		this.subtotal = getItens().stream().map(item -> item.getPrecoTotal()).reduce(BigDecimal.ZERO, BigDecimal::add);
+
 		this.valorTotal = this.subtotal.add(this.taxaFrete);
 	}
-	
-	
-	
-
 
 }

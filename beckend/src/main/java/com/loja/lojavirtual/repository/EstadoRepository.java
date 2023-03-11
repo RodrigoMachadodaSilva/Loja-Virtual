@@ -8,4 +8,5 @@ public interface EstadoRepository extends JpaRepository<Estado, Long>{
 	
 	Estado findByNome (String nome);
 
+
 }
