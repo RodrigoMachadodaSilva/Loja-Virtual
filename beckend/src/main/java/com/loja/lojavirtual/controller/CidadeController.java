@@ -42,7 +42,7 @@ public class CidadeController {
 	@Autowired
 	private CidadeRepository cidadeRepository;
 	
-	//@Override
+	
 	@GetMapping
 	public List<CidadeModel> listar() {
 		List<Cidade> todasCidades = cidadeRepository.findAll();
@@ -52,6 +52,7 @@ public class CidadeController {
 	
 	@GetMapping("/{cidadeId}")
 	public CidadeModel buscar(@PathVariable Long cidadeId) {
+		
 		Cidade cidade = cidadeService.buscarOuFalhar(cidadeId);
 		
 		return cidadeModelAssembler.toModel(cidade);
