@@ -1,5 +1,7 @@
 package com.loja.lojavirtual.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -39,17 +41,14 @@ public class EstadoService {
 			throw new exception.EntidadeEmUsoException(String.format(MSG_ESTADO_EM_USO, estadoId));
 		}
 	}
-	
-	
-
 
 	public Estado buscarOuFalhar(Long estadoId) {
 		return estadoRepository.findById(estadoId).orElseThrow(() -> new EstadoNaoEncontradoException(estadoId));
 	}
-	
-	public void validarEstadoDuplicado( Estado estado) {
+
+	public void validarEstadoDuplicado(Estado estado) {
 		Estado estadoExistente = estadoRepository.findByNome(estado.getNome());
-		if(estadoExistente != null && estadoExistente.getId() != estado.getId()) {
+		if (estadoExistente != null && estadoExistente.getId() != estado.getId()) {
 			throw new NegocioException(String.format("O estado de nome %s já está cadastrado", estado.getNome()));
 		}
 	}

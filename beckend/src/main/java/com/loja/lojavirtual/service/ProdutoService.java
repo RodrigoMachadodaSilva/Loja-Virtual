@@ -13,10 +13,10 @@ import com.loja.lojavirtual.entity.Categoria;
 import com.loja.lojavirtual.entity.Produto;
 import com.loja.lojavirtual.repository.ProdutoRepository;
 
+import exception.CategoriaNaoEncontradaException;
 import exception.EntidadeEmUsoException;
 import exception.NegocioException;
 import exception.ProdutoNaoEncontradoException;
-import com.loja.lojavirtual.service.CategoriaService;
 
 @Service
 public class ProdutoService {
@@ -34,14 +34,14 @@ public class ProdutoService {
 	}
 
 	public Produto buscar(Long produtoId, Long categoriaId) {
-		Produto produto = produtoRepository.buscarPorId(produtoId, categoriaId)
+		Categoria categoria = categoriaService.buscarOuFalhar(categoriaId);
+		Produto produto = produtoRepository.buscarPorId(produtoId, categoria.getId())
 				.orElseThrow(() -> new ProdutoNaoEncontradoException(produtoId));
 
 		return produto;
 	}
 
 	public Produto salvar(Long categoriaId, Produto produto) {
-		validarCategoriaProdutoExiste(categoriaId);
 		Categoria categoria = categoriaService.buscarOuFalhar(categoriaId);
 		validarProdutoDuplicado(produto);
 		produto.setCategoria(categoria);
@@ -62,12 +62,9 @@ public class ProdutoService {
 		}
 	}
 
-	private void validarCategoriaProdutoExiste(Long categoriaId) {
-		if (categoriaId == null) {
-			throw new NegocioException("A categoria informada não pode ser nula");
-		}
+		
 
-	}
+	
 
 	private void validarProdutoDuplicado(Produto produto) {
 		Optional<Produto> produtoExiste = produtoRepository.findByCategoriaIdAndNomeAndDescricao(

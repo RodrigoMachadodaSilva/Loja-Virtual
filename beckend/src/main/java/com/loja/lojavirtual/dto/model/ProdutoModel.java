@@ -16,12 +16,11 @@ public class ProdutoModel {
 
 	private String descricao;
 
-	private BigDecimal valor_Custo;
-
 	private BigDecimal valor_Venda;
 
-	private Marca marca;
+	private MarcaIdModel marca;
 
-	private Categoria categoria;
+	private CategoriaIdModel categoria;
+	
 
 }

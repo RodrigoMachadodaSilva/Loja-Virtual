@@ -1,6 +1,7 @@
 package com.loja.lojavirtual.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -14,7 +15,7 @@ import com.loja.lojavirtual.repository.CidadeRepository;
 
 import exception.CidadeNaoEncontradaException;
 import exception.EntidadeEmUsoException;
-
+import exception.NegocioException;
 
 @Service
 public class CidadeService {
@@ -29,6 +30,7 @@ public class CidadeService {
 
 	@Transactional
 	public Cidade salvar(Cidade cidade) {
+
 		Long estadoId = cidade.getEstado().getId();
 
 		Estado estado = estadoService.buscarOuFalhar(estadoId);
@@ -55,9 +57,10 @@ public class CidadeService {
 	public Cidade buscarOuFalhar(Long cidadeId) {
 		return cidadeRepository.findById(cidadeId).orElseThrow(() -> new CidadeNaoEncontradaException(cidadeId));
 	}
-	
+
 	public List<Cidade> listar() {
 		return cidadeRepository.findAll();
+
 	}
 
 }

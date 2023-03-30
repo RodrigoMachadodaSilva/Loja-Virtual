@@ -3,11 +3,8 @@ package com.loja.lojavirtual.dto.model;
 import lombok.Data;
 
 @Data
-public class CidadeModel {
-
+public class CategoriaIdModel {
+	
 	private Long id;
 
-	private String nome;
-	
-	private EstadoModel estado;
 }

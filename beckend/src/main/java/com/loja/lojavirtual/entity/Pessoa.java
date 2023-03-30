@@ -45,9 +45,9 @@ public class Pessoa {
 	@Embedded
 	private Endereco endereco;
 
-	// @Temporal(TemporalType.TIMESTAMP)
-	// private Date dataCriacao;
+	//@Temporal(TemporalType.TIMESTAMP)
+	//private Date dataCriacao;
 
-	// @Temporal(TemporalType.TIMESTAMP)
-	// private Date dataAtualizacao;
+	//@Temporal(TemporalType.TIMESTAMP)
+	//private Date dataAtualizacao;
 }

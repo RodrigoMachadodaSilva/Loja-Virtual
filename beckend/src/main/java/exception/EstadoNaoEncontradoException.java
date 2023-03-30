@@ -13,5 +13,4 @@ public class EstadoNaoEncontradoException extends EntidadeNaoEncontradaException
 	}
 	
 
-
 }

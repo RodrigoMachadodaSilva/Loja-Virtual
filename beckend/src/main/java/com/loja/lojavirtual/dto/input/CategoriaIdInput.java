@@ -3,10 +3,8 @@ package com.loja.lojavirtual.dto.input;
 import lombok.Data;
 
 @Data
-public class EstadoInput {
+public class CategoriaIdInput {
 	
-	private String nome;
-	
-	
+	private Long id;
 
 }

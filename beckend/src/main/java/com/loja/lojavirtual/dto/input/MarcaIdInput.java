@@ -1,12 +1,9 @@
 package com.loja.lojavirtual.dto.input;
 
 import lombok.Data;
-
 @Data
-public class EstadoInput {
-	
-	private String nome;
-	
-	
+public class MarcaIdInput {
+
+	private Long id;
 
 }
