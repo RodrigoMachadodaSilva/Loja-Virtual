@@ -13,7 +13,6 @@ import com.loja.lojavirtual.entity.Categoria;
 import com.loja.lojavirtual.entity.Produto;
 import com.loja.lojavirtual.repository.ProdutoRepository;
 
-import exception.CategoriaNaoEncontradaException;
 import exception.EntidadeEmUsoException;
 import exception.NegocioException;
 import exception.ProdutoNaoEncontradoException;
@@ -30,13 +29,14 @@ public class ProdutoService {
 	private ProdutoRepository produtoRepository;
 
 	public List<Produto> listar(Long categoriaID) {
-		return produtoRepository.findByCategoriaId(categoriaID);
+		Categoria categoria = categoriaService.buscarOuFalhar(categoriaID);
+		return produtoRepository.findByCategoriaId(categoria.getId());
 	}
 
 	public Produto buscar(Long produtoId, Long categoriaId) {
 		Categoria categoria = categoriaService.buscarOuFalhar(categoriaId);
 		Produto produto = produtoRepository.buscarPorId(produtoId, categoria.getId())
-				.orElseThrow(() -> new ProdutoNaoEncontradoException(produtoId));
+				.orElseThrow(() -> new ProdutoNaoEncontradoException(produtoId, categoriaId));
 
 		return produto;
 	}
@@ -51,22 +51,19 @@ public class ProdutoService {
 	@Transactional
 	public void excluir(Long categoriaId, Long produtoId) {
 		try {
+			categoriaService.buscarOuFalhar(categoriaId);
 			produtoRepository.deleteById(produtoId);
 			produtoRepository.flush();
 
 		} catch (EmptyResultDataAccessException e) {
-			throw new ProdutoNaoEncontradoException(produtoId);
+			throw new ProdutoNaoEncontradoException(produtoId, categoriaId);
 
 		} catch (DataIntegrityViolationException e) {
 			throw new EntidadeEmUsoException(String.format(MSG_PRODUTO_EM_USO, produtoId));
 		}
 	}
 
-		
-
-	
-
-	private void validarProdutoDuplicado(Produto produto) {
+	public void validarProdutoDuplicado(Produto produto) {
 		Optional<Produto> produtoExiste = produtoRepository.findByCategoriaIdAndNomeAndDescricao(
 				produto.getCategoria().getId(), produto.getNome(), produto.getDescricao());
 		if (produtoExiste.isPresent()) {

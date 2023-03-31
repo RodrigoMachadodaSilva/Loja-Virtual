@@ -16,5 +16,8 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 	Optional<Produto> buscarPorId (Long produtoId, Long categoriaId );
 	
 	Optional<Produto> findByCategoriaIdAndNomeAndDescricao(Long categoriaId, String nome, String descricao);
+	
+	//@Query("Delete prod from Produto prod where prod.id = :produtoId and prod.categoria.id = :categoriaId")
+	//Produto deletarPorId (Long produtoId, Long categoriaId );
 
 }
