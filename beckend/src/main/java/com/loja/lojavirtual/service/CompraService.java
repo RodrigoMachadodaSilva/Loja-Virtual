@@ -14,6 +14,7 @@ import com.loja.lojavirtual.entity.Produto;
 import com.loja.lojavirtual.repository.CompraRepository;
 import com.loja.lojavirtual.repository.ProdutoRepository;
 
+import exception.CompraNaoEncontradaException;
 import exception.NegocioException;
 import exception.ProdutoNaoEncontradoException;
 
@@ -33,8 +34,8 @@ public class CompraService {
 		return compraRepository.findAll();
 	}
 
-	public Compra buscarporId(Long compraId) {
-		return compraRepository.findById(compraId).orElseThrow(() -> new NegocioException("Compra não cadastrada"));
+	public Compra buscarporCodigo(String codigo) {
+		return compraRepository.findByCodigo(codigo).orElseThrow(() -> new CompraNaoEncontradaException(codigo));
 	}
 
 	public List<Compra> listarComprasCliente(Long clienteId) {

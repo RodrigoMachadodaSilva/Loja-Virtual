@@ -17,7 +17,6 @@ import com.loja.lojavirtual.dto.model.CompraModel;
 import com.loja.lojavirtual.entity.Compra;
 import com.loja.lojavirtual.entity.Pessoa;
 import com.loja.lojavirtual.service.CompraService;
-import com.loja.lojavirtual.service.PessoaClienteService;
 
 @RestController
 @RequestMapping("/compra")
@@ -25,9 +24,6 @@ public class CompraController {
 
 	@Autowired
 	private CompraService compraService;
-
-	@Autowired
-	private PessoaClienteService pessoaClienteService;
 
 	@Autowired
 	private CompraModelAssembler compraModelAssembler;
@@ -49,9 +45,9 @@ public class CompraController {
 
 	}
 
-	@GetMapping("/{clienteId}")
-	public CompraModel buscarCompraId(@PathVariable Long clienteId) {
-		Compra compra = compraService.buscarporId(clienteId);
+	@GetMapping("/{codigoCompra}")
+	public CompraModel buscarCompraId(@PathVariable String codigoCompra) {
+		Compra compra = compraService.buscarporCodigo(codigoCompra);
 
 		return compraModelAssembler.toModel(compra);
 	}
@@ -60,7 +56,7 @@ public class CompraController {
 	public CompraModel salvar(@RequestBody CompraInput compraInput) {
 
 		Compra compra = compraInputDisassembler.toDomainObject(compraInput);
-		
+
 		compra.setCliente(new Pessoa());
 		compra.getCliente().setId(2L);
 

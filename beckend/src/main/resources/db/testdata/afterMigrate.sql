@@ -43,7 +43,7 @@ insert into pessoa( id, nome, cpf, email, endereco_cidade_id, endereco_cep, ende
 insert into compra (id, codigo, usuario_cliente_id, endereco_cidade_id, endereco_cep, 
                     endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro,
 	                 data_criacao, subtotal, taxa_frete, valor_total)
-values (1, 'f9981ca4-5a5e-4da3-af04-933861df3e55', 2,  1, '38400-000', 'Rua Floriano Peixoto', '500', 'Apto 801', 'Brasil', utc_timestamp, 298.90, 10, 308.90);
+values (1,'f9981ca4-5a5e-4da3-af04-933861df3e55',  2,  1, '38400-000', 'Rua Floriano Peixoto', '500', 'Apto 801', 'Brasil', utc_timestamp, 298.90, 10, 308.90);
 
 insert into item_compra (id, compra_id, produto_id, quantidade, preco_unitario, preco_total, observacao)
 values (54, 1, 3, 2, 87.2, 174.4, null);

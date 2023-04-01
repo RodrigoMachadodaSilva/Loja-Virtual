@@ -1,6 +1,5 @@
 create table compra (
   id bigint not null auto_increment,
-  codigo varchar (255) ,
   subtotal decimal(10,2),
   taxa_frete decimal(10,2),
   valor_total decimal(10,2),

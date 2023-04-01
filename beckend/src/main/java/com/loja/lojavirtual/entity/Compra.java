@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
@@ -14,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -30,7 +32,7 @@ public class Compra {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	// private String codigo;
+    private String codigo;
 
 	private BigDecimal subtotal;
 
@@ -58,5 +60,12 @@ public class Compra {
 
 		this.valorTotal = this.subtotal.add(this.taxaFrete);
 	}
+	
+	@PrePersist
+	private void gerarCodigo() {
+		setCodigo(UUID.randomUUID().toString());
+	}
+	
+	
 
 }
