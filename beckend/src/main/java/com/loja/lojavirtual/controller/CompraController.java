@@ -16,7 +16,11 @@ import com.loja.lojavirtual.dto.input.CompraInput;
 import com.loja.lojavirtual.dto.model.CompraModel;
 import com.loja.lojavirtual.entity.Compra;
 import com.loja.lojavirtual.entity.Pessoa;
+import com.loja.lojavirtual.repository.CompraRepository;
+import com.loja.lojavirtual.repository.filter.CompraFilter;
 import com.loja.lojavirtual.service.CompraService;
+
+import infraestructure.repository.CompraSpecs;
 
 @RestController
 @RequestMapping("/compra")
@@ -30,11 +34,22 @@ public class CompraController {
 
 	@Autowired
 	private CompraInputDisassembler compraInputDisassembler;
+	
+	@Autowired
+	private CompraRepository compraRepository;
 
-	@GetMapping
+	/*@GetMapping
 	public List<CompraModel> listar() {
 		List<Compra> compra = compraService.listar();
 		return compraModelAssembler.toCollectionModel(compra);
+	}*/
+	
+
+	@GetMapping
+	public List<CompraModel> pesquisar(CompraFilter filtro) {
+		List<Compra> todosPedidos = compraRepository.findAll(CompraSpecs.usandoFiltro(filtro));
+		
+		return compraModelAssembler.toCollectionModel(todosPedidos);
 	}
 
 	@GetMapping("/cliente/{compraId}")

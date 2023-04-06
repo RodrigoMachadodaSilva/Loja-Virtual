@@ -14,6 +14,8 @@ public class ProdutoInput {
 	private BigDecimal valor_Custo;
 
 	private BigDecimal valor_Venda;
+	
+	private Integer quantidade_Estoque;
 
 	private MarcaIdInput marca;
 

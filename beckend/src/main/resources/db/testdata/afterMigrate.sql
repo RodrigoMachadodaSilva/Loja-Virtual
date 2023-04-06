@@ -27,10 +27,10 @@ insert into marca(id, nome) values (1, 'tramontina');
 insert into marca(id, nome) values (2, 'corte bom');
 insert into marca(id, nome) values (3, 'tempero bom');
 
-insert into produto(id, marca_id, categoria_id, nome, descricao, valor_venda,valor_custo) values ( 1, 1, 1, 'faca rambo', 'faca militar', 89.00, 56.00);
-insert into produto(id, marca_id, categoria_id, nome, descricao, valor_venda,valor_custo) values ( 2, 1, 1, 'faca churrasco', 'faca para churrasco', 78.00, 46.00);
-insert into produto(id, marca_id, categoria_id, nome, descricao, valor_venda,valor_custo) values ( 3, 2, 2, 'garra de urso', 'garra de urso para churrasco', 88.00, 57.00);
-insert into produto(id, marca_id, categoria_id, nome, descricao, valor_venda,valor_custo) values ( 4, 3, 3, 'sal bom', 'sal para churrasco', 10.00, 5.00);
+insert into produto(id, marca_id, categoria_id, nome, descricao, valor_venda,valor_custo, quantidade_Estoque) values ( 1, 1, 1, 'faca rambo', 'faca militar', 89.00, 56.00, 12);
+insert into produto(id, marca_id, categoria_id, nome, descricao, valor_venda,valor_custo, quantidade_Estoque) values ( 2, 1, 1, 'faca churrasco', 'faca para churrasco', 78.00, 46.00, 0);
+insert into produto(id, marca_id, categoria_id, nome, descricao, valor_venda,valor_custo, quantidade_Estoque) values ( 3, 2, 2, 'garra de urso', 'garra de urso para churrasco', 88.00, 57.00, 6);
+insert into produto(id, marca_id, categoria_id, nome, descricao, valor_venda,valor_custo, quantidade_Estoque) values ( 4, 3, 3, 'sal bom', 'sal para churrasco', 10.00, 5.00, 4);
 
 insert into permissao(id, nome) values (1, 'administrador');
 insert into permissao(id, nome) values (2, 'cliente');

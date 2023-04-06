@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +26,7 @@ import com.loja.lojavirtual.dto.model.PessoaClienteModel;
 import com.loja.lojavirtual.entity.Permissao;
 import com.loja.lojavirtual.entity.Pessoa;
 import com.loja.lojavirtual.repository.PermissaoRepository;
+import com.loja.lojavirtual.repository.PessoaRepository;
 import com.loja.lojavirtual.service.PessoaClienteService;
 
 @RestController
@@ -38,16 +42,25 @@ public class PessoaClienteController {
 
 	@Autowired
 	public PessoaClienteInputDisassembler pessoaClienteInputDisassembler;
-	
+
 	@Autowired
 	private PermissaoRepository permissaoRepository;
 
+	@Autowired
+	private PessoaRepository pessoaRepository;
+
 	@GetMapping
-	public List<PessoaClienteModel> listar() {
+	public Page<PessoaClienteModel> listar(Pageable pageable) {
 
-		List<Pessoa> pessoas = pessoaClienteService.listar();
+		Page<Pessoa> pessoasPage = pessoaRepository.findAll(pageable);
 
-		return pessoaClienteModelAssembler.toCollectionModel(pessoas);
+		List<PessoaClienteModel> pessoasClienteModel = pessoaClienteModelAssembler
+				.toCollectionModel(pessoasPage.getContent());
+
+		Page<PessoaClienteModel> pessoasClienteModelPage = new PageImpl<>(pessoasClienteModel, pageable,
+				pessoasPage.getTotalElements());
+		
+		return pessoasClienteModelPage;
 	}
 
 	@GetMapping("/{pessoaId}")
@@ -63,7 +76,6 @@ public class PessoaClienteController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public PessoaClienteModel salvar(@RequestBody PessoaClienteInput pessoaInput) {
 		Pessoa pessoa = pessoaClienteInputDisassembler.toDomainObject(pessoaInput);
-		
 
 		Pessoa pessoaSalvar = pessoaClienteService.salvar(pessoa);
 

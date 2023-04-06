@@ -43,10 +43,18 @@ public class ProdutoController {
 	@Autowired
 	private ProdutoRepository produtoRepository;
 
-	@GetMapping
+	/*@GetMapping
 	public List<ProdutoModel> listar(@PathVariable Long categoriaId) {
 
 		List<Produto> produtos = produtoService.listar(categoriaId);
+
+		return produtoModelAssembler.toCollectionModel(produtos);
+	}*/
+	
+	@GetMapping
+	public List<ProdutoModel> listarDisponiveis(@PathVariable Long categoriaId) {
+
+		List<Produto> produtos = produtoService.listarDisponiveis(categoriaId);
 
 		return produtoModelAssembler.toCollectionModel(produtos);
 	}

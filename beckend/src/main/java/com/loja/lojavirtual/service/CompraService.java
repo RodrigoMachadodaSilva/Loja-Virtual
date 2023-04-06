@@ -15,7 +15,6 @@ import com.loja.lojavirtual.repository.CompraRepository;
 import com.loja.lojavirtual.repository.ProdutoRepository;
 
 import exception.CompraNaoEncontradaException;
-import exception.NegocioException;
 import exception.ProdutoNaoEncontradoException;
 
 @Service

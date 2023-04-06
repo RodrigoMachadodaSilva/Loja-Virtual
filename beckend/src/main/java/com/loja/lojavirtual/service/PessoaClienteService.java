@@ -1,7 +1,6 @@
 package com.loja.lojavirtual.service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -28,9 +27,7 @@ public class PessoaClienteService {
 	@Autowired
 	private EmailService emailService;
 
-	public List<Pessoa> listar() {
-		return pessoaRepository.findAll();
-	}
+
 
 	public Pessoa buscarPorId(Long pessoaId) {
 		return pessoaRepository.findById(pessoaId).orElseThrow(() -> new PessoaNaoEncontradaException(pessoaId));

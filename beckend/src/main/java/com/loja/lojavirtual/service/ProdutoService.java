@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,9 +35,15 @@ public class ProdutoService {
 		return produtoRepository.findByCategoriaId(categoria.getId());
 	}
 
+	public List<Produto> listarDisponiveis(Long categoriaID) {
+		Categoria categoria = categoriaService.buscarOuFalhar(categoriaID);
+		return produtoRepository.buscarDisponivelPorId(categoria.getId());
+
+	}
+
 	public Produto buscar(Long produtoId, Long categoriaId) {
 		Categoria categoria = categoriaService.buscarOuFalhar(categoriaId);
-		Produto produto = produtoRepository.buscarPorId(produtoId, categoria.getId())
+		Produto produto = produtoRepository.buscarTodosPorId(produtoId, categoria.getId())
 				.orElseThrow(() -> new ProdutoNaoEncontradoException(produtoId, categoriaId));
 
 		return produto;
@@ -74,7 +82,7 @@ public class ProdutoService {
 
 	protected Produto validarProdutoCompraExiste(Long produtoId) {
 		Optional<Produto> produtoExiste = produtoRepository.findById(produtoId);
-		if (produtoExiste.isEmpty()) {
+		if (produtoExiste.isEmpty() && produtoExiste.get().getQuantidade_Estoque() > 0) {
 			throw new ProdutoNaoEncontradoException(produtoId);
 		}
 		return produtoExiste.get();

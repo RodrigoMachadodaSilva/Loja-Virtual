@@ -29,6 +29,8 @@ public class Produto {
 	
 	private BigDecimal valor_Venda;
 	
+	private Integer quantidade_Estoque;
+	
 	@ManyToOne
 	@JoinColumn(name = "marca_Id")
 	private Marca marca;
