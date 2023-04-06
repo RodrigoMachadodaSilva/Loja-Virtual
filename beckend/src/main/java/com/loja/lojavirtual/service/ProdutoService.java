@@ -29,6 +29,7 @@ public class ProdutoService {
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
 
 	public List<Produto> listar(Long categoriaID) {
 		Categoria categoria = categoriaService.buscarOuFalhar(categoriaID);

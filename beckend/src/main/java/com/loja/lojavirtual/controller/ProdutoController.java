@@ -25,7 +25,10 @@ import com.loja.lojavirtual.dto.input.ProdutoInput;
 import com.loja.lojavirtual.dto.model.ProdutoModel;
 import com.loja.lojavirtual.entity.Produto;
 import com.loja.lojavirtual.repository.ProdutoRepository;
+import com.loja.lojavirtual.repository.filter.ProdutoFilter;
 import com.loja.lojavirtual.service.ProdutoService;
+
+import infraestructure.repository.ProdutoSpecs;
 
 @RestController
 @RequestMapping("categoria{categoriaId}/produto")
@@ -43,15 +46,28 @@ public class ProdutoController {
 	@Autowired
 	private ProdutoRepository produtoRepository;
 
-	/*@GetMapping
-	public List<ProdutoModel> listar(@PathVariable Long categoriaId) {
+	@GetMapping()
+	public List<ProdutoModel> listarPorCategoria(@PathVariable Long categoriaId) {
 
 		List<Produto> produtos = produtoService.listar(categoriaId);
 
 		return produtoModelAssembler.toCollectionModel(produtos);
-	}*/
+		
 	
-	@GetMapping
+	}
+	
+	@GetMapping("/filtro")
+	public List<ProdutoModel> listarComFiltro( ProdutoFilter filtro) {
+
+		List<Produto> produtos = produtoRepository.findAll( ProdutoSpecs.usandoFiltro(filtro));
+
+		return produtoModelAssembler.toCollectionModel(produtos);
+		
+	
+	}
+	
+	
+	@GetMapping("/disponiveis")
 	public List<ProdutoModel> listarDisponiveis(@PathVariable Long categoriaId) {
 
 		List<Produto> produtos = produtoService.listarDisponiveis(categoriaId);
